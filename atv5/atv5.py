@@ -38,16 +38,20 @@ cursor = conexao.cursor()
 
 while True:
     # Menu de opções
-    opcao = int(input("Lista de Tarefas\n1-Criar \n2-Exibir \n3-Editar \n4-Deletar \n5-Encerrar\nEscolha uma opção: "))
+    opcao = int(input("Lista de Tarefas"
+                      "\n1-Criar "
+                      "\n2-Exibir "
+                      "\n3-Editar "
+                      "\n4-Deletar "
+                      "\n5-Encerrar"
+                      "\nEscolha uma opção: "))
 
     if opcao == 1:
         # Criar tarefa
         titulo = input("Informe o título da tarefa: ")
         descricao = input("Informe a descrição da tarefa: ")
-        
         data_criacao = input("Informe a data de criação (dd/mm/yyyy): ")
         data_criacao = datetime.strptime(data_criacao, "%d/%m/%Y").date()
-        
         data_conclusao = input("Informe a data de conclusão (dd/mm/yyyy): ")
         data_conclusao = datetime.strptime(data_conclusao, "%d/%m/%Y").date()
         
@@ -69,11 +73,11 @@ while True:
             id, titulo, descricao, data_criacao, data_conclusao = tarefa
             data_criacao = data_criacao.strftime("%d/%m/%Y")
             data_conclusao = data_conclusao.strftime("%d/%m/%Y")
-            print(f"\nTítulo: {titulo}, \nDescrição: {descricao}, \nData de Criação: {data_criacao}, \nData de Conclusão: {data_conclusao}")
+            print(f"ID: {id},\nTítulo: {titulo}, \nDescrição: {descricao}, \nData de Criação: {data_criacao}, \nData de Conclusão: {data_conclusao}")
 
     elif opcao == 3:
         # Editar tarefa
-        pesq_id = int(input("Informe o ID da tarefa que deseja editar: "))
+        pesq_id = int(input("Informe o ID da tarefa que vc qr editar: "))
         campo = input("Qual campo deseja atualizar (titulo, descricao, data_criacao, data_conclusao)? ")
         novo_valor = input(f"Informe o novo valor para {campo}: ")
         
@@ -89,21 +93,21 @@ while True:
         print("Tarefa atualizada com sucesso.")
 
     elif opcao == 4:
-        # Deletar tarefa
-        pesq_id = int(input("Informe o ID da tarefa que deseja deletar: "))
+        # Deletar tarefa pelo id informado
+        pesq_id = int(input("Informe o ID da tarefa que vc quer deletar: "))
         comando = f"DELETE FROM tarefa WHERE id={pesq_id}"
         cursor.execute(comando)
         conexao.commit()
         print("Tarefa deletada com sucesso.")
 
     elif opcao == 5:
-        # Encerrar
+        # Finaliza o loop
         print("Encerrando o programa.")
         break
 
     else:
         print("Opção inválida!")
 
-# Fecha a conexão
+# Fecha a conexão :))
 cursor.close()
 conexao.close()
